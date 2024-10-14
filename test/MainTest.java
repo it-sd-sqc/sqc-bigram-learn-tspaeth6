@@ -60,5 +60,30 @@ class MainTest {
     );
   }
 
-  // TODO: Create your test(s) below. /////////////////////////////////////////
+    // TODO: Create your test(s) below. /////////////////////////////////////////
+    @Test
+    void getId() {
+
+        Main.reset();
+        Connection db = Main.createConnection();
+
+        String src = "Hello World hello world";
+
+        assertDoesNotThrow(() -> {
+            int initialWordCount = Main.getWordCount(db);
+            assertEquals(0, initialWordCount);
+
+            Main.createBigrams(db, src);
+
+            int finalWordCount = Main.getWordCount(db);
+            assertEquals(3, finalWordCount);
+
+            db.close();
+
+
+
+    });
+
+
+}
 }
